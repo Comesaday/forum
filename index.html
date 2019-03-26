@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="./js/jquery-1.11.0.min.js"></script>
+  	  	<script type="text/javascript" src="./js/jquery.event.drag-1.5.min.js"></script>
+    	<script type="text/javascript" src="./js/jquery.touchSlider.js"></script>
+		<script type="text/javascript">
+		    $(document).ready(function() {
+		        $(".header").hover(function() {
+		            $("#btn_prev,#btn_next").fadeIn()
+		        }, function() {
+		            $("#btn_prev,#btn_next").fadeOut()
+		        });
+		
+		        $dragBln = false;
+		
+		        $(".main_image").touchSlider({
+		            flexible: true,
+		            speed: 200,
+		            btn_prev: $("#btn_prev"),
+		            btn_next: $("#btn_next"),
+		            paging: $(".flicking_con a"),
+		            counter: function(e) {
+		                $(".flicking_con a").removeClass("on").eq(e.current - 1).addClass("on");
+		            }
+		        });
+		
+		        $(".main_image").bind("mousedown", function() {
+		            $dragBln = false;
+		        });
+		
+		        $(".main_image").bind("dragstart", function() {
+		            $dragBln = true;
+		        });
+		
+		        $(".main_image a").click(function() {
+		            if ($dragBln) {
+		                return false;
+		            }
+		        });
+		
+		        timer = setInterval(function() {
+		            $("#btn_next").click();
+		        }, 3000);
+		
+		        $(".header").hover(function() {
+		            clearInterval(timer);
+		        }, function() {
+		            timer = setInterval(function() {
+		                $("#btn_next").click();
+		            }, 3000);
+		        });
+		
+		        $(".main_image").bind("touchstart", function() {
+		            clearInterval(timer);
+		        }).bind("touchend", function() {
+		            timer = setInterval(function() {
+		                $("#btn_next").click();
+		            }, 3000);
+		        });
+		
+		    });
+    	</script>
+	</head>
+	<body>
+		<div id="container">
+			<div class="header">
+				<div class="flicking_con">
+	                <a href="###">1</a>
+	                <a href="###">2</a>
+	                <a href="###">3</a>
+	            </div>
+	            <div class="main_image">
+	                <ul>
+	                    <li><span class="img_1"></span></li>
+	                    <li><span class="img_2"></span></li>
+	                    <li><span class="img_3"></span></li>
+	                </ul>
+	                <a href="javascript:;" id="btn_prev"></a>
+	                <a href="javascript:;" id="btn_next"></a>
+	            </div>
+			</div>
+			<div class="menu">
+				<p>公益果园官方网站</p>
+			</div>
+			<div class="main">
+				<ul class="main-box">
+					<li><a href="55.html"><img src="./img/3.png"/><span>预    约</span></a></li>
+					<li><a><img src="./img/4.png"/><span>收件箱</span></a></li>
+					<li><a><img src="./img/5.png"/><span>发件箱</span></a></li>
+					<li><a><img src="./img/4.png"/><span>登    陆</span></a></li>
+					<li><a><img src="./img/5.png"/><span>注    册</span></a></li>
+					<li><a><img src="./img/3.png"/><span>关于我们</span></a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="footer">
+					<p style="padding-top: 10px;">友情链接：<a href="http://www.baidu.com">百度</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="http://www.pdsu.edu.cn">平顶山学院</a><span>&nbsp;&nbsp;|&nbsp;&nbsp;</span><a href="http://www.pdsu.edu.cn">计算机学院</a></p>
+					<p>版权所有©毕业设计 By CHEN  如有任何建议或问题请与本人联系</p>
+					<p>邮箱：cw_vscode0101@126.com  QQ：931716599</p>
+					<p style="padding-bottom: 10px;">地址：河南省平顶山市平顶山学院计算机学院</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</body>
+</html>
